@@ -1,0 +1,88 @@
+# App and website shortcuts for Jarvis
+#
+# Each entry has:
+#   name:    canonical name (used in responses)
+#   path:    full path to the executable (for desktop apps)
+#   url:     URL to open (for websites; leave path empty)
+#   aliases: list of phrases that trigger this app
+#
+# To add a new app: copy any entry below and edit the path/url and aliases.
+
+apps:
+  - name: Chrome
+    path: "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+    aliases: [chrome, google chrome, browser]
+
+  - name: Firefox
+    path: "C:\\Program Files\\Mozilla Firefox\\firefox.exe"
+    aliases: [firefox, mozilla]
+
+  - name: Discord
+    path: "%LOCALAPPDATA%\\Discord\\Update.exe"
+    aliases: [discord]
+
+  - name: Spotify
+    path: "%APPDATA%\\Spotify\\Spotify.exe"
+    aliases: [spotify, music]
+
+  - name: Notepad
+    path: "notepad.exe"
+    aliases: [notepad, text editor, notes]
+
+  - name: VS Code
+    path: "%LOCALAPPDATA%\\Programs\\Microsoft VS Code\\Code.exe"
+    aliases: [vscode, vs code, visual studio code, code]
+
+  - name: File Explorer
+    path: "explorer.exe"
+    aliases: [explorer, file explorer, files]
+
+  - name: Task Manager
+    path: "taskmgr.exe"
+    aliases: [task manager, tasks]
+
+  - name: Calculator
+    path: "calc.exe"
+    aliases: [calculator, calc]
+
+  - name: Terminal
+    path: "wt.exe"
+    aliases: [terminal, windows terminal, command prompt, cmd]
+
+websites:
+  - name: YouTube
+    url: "https://www.youtube.com"
+    aliases: [youtube, yt]
+
+  - name: Gmail
+    url: "https://mail.google.com"
+    aliases: [gmail, email, mail]
+
+  - name: GitHub
+    url: "https://www.github.com"
+    aliases: [github, git hub]
+
+  - name: Reddit
+    url: "https://www.reddit.com"
+    aliases: [reddit]
+
+  - name: ChatGPT
+    url: "https://chat.openai.com"
+    aliases: [chatgpt, chat gpt, openai]
+
+folders:
+  - name: Downloads
+    path: "%USERPROFILE%\\Downloads"
+    aliases: [downloads, download folder]
+
+  - name: Desktop
+    path: "%USERPROFILE%\\Desktop"
+    aliases: [desktop]
+
+  - name: Documents
+    path: "%USERPROFILE%\\Documents"
+    aliases: [documents, docs]
+
+  - name: Pictures
+    path: "%USERPROFILE%\\Pictures"
+    aliases: [pictures, photos, images]
