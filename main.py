@@ -115,7 +115,7 @@ def main() -> int:
 
     # Wire UI signals → worker engine slots
     window.control_bar.text_submitted.connect(
-        lambda text: worker.engine.handle_text_input(text)
+        lambda text: worker.engine.submit_text(text)
         if worker.engine else None
     )
     window.control_bar.ptt_pressed.connect(
