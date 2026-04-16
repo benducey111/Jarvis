@@ -1,0 +1,37 @@
+# ── GUI ─────────────────────────────────────────────────────────────────────
+PyQt6>=6.7.0
+
+# ── Speech-to-text ───────────────────────────────────────────────────────────
+faster-whisper>=1.0.3
+sounddevice>=0.4.7
+scipy>=1.13.0            # WAV encoding / audio helpers
+webrtcvad-wheels>=2.0.14 # Pre-built VAD for Windows (no MSVC compiler needed)
+
+# ── Text-to-speech ───────────────────────────────────────────────────────────
+edge-tts>=6.1.12
+pyttsx3>=2.90            # Offline Windows SAPI5 fallback
+pygame>=2.6.0            # Audio playback for edge-tts MP3 output
+
+# ── AI backends ─────────────────────────────────────────────────────────────
+openai>=1.40.0           # OpenAI API + Ollama OpenAI-compatible endpoint
+httpx>=0.27.0            # HTTP client used by openai SDK
+
+# ── Computer automation ──────────────────────────────────────────────────────
+pyautogui>=0.9.54        # Keyboard/mouse automation (typing)
+pyperclip>=1.9.0         # Clipboard access
+Pillow>=10.4.0           # Screenshots (PIL.ImageGrab)
+# pygetwindow>=0.0.9     # Window management (optional, uncomment if needed)
+# pycaw>=20240210        # Windows Core Audio API for volume (optional)
+# comtypes>=1.4.1        # Required by pycaw (optional)
+
+# ── Configuration & validation ───────────────────────────────────────────────
+PyYAML>=6.0.1
+pydantic>=2.8.0
+pydantic-settings>=2.4.0
+python-dotenv>=1.0.1
+
+# ── Logging ──────────────────────────────────────────────────────────────────
+loguru>=0.7.2
+
+# ── NumPy (audio processing) ─────────────────────────────────────────────────
+numpy>=1.26.0

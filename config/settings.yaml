@@ -1,0 +1,61 @@
+# Jarvis Configuration
+# Edit this file to customise your assistant.
+# API keys must go in .env (never here).
+
+ai:
+  # "openai" uses the OpenAI API (requires OPENAI_API_KEY in .env)
+  # "ollama" uses a local Ollama server (free, offline, requires ollama installed)
+  backend: openai
+  model: gpt-4o-mini
+  ollama_base_url: http://localhost:11434/v1
+  ollama_model: llama3
+  system_prompt: >
+    You are Jarvis, a helpful and concise personal AI assistant for Windows.
+    Keep your responses brief and conversational. When asked to perform computer
+    tasks, confirm what you are doing in one short sentence.
+  max_history_messages: 20
+  temperature: 0.7
+  max_tokens: 512
+
+stt:
+  backend: faster_whisper
+  # Model sizes (larger = more accurate, slower to load):
+  #   tiny.en (75 MB), base.en (141 MB), small.en (466 MB)
+  model_size: base.en
+  device: cpu
+  compute_type: int8
+  language: en
+  vad_aggressiveness: 2    # 0=lenient, 3=most aggressive noise rejection
+  silence_threshold_ms: 800
+  sample_rate: 16000
+  channels: 1
+
+tts:
+  backend: edge_tts
+  # Popular edge-tts voices:
+  #   en-US-GuyNeural (male), en-US-AriaNeural (female), en-GB-RyanNeural (British male)
+  voice: en-US-GuyNeural
+  rate: +0%
+  volume: +0%
+  pyttsx3_rate: 185  # words per minute for offline fallback
+
+ui:
+  window_width: 480
+  window_height: 720
+  font_family: Segoe UI
+  font_size: 13
+  frameless: false
+  stay_on_top: false
+  minimize_to_tray: false
+
+safety:
+  # safe_mode=true requires confirmation before risky commands (recommended)
+  safe_mode: true
+  confirm_typing: true
+  confirm_shell: true
+
+logging:
+  level: INFO
+  log_file: logs/jarvis.log
+  rotation: 5 MB
+  retention: 10 days
