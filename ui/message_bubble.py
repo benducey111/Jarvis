@@ -1,4 +1,4 @@
-"""Message bubble widget for the chat interface."""
+"""Message bubble for the chat interface."""
 
 from datetime import datetime
 
@@ -9,12 +9,13 @@ from ui.styles import COLOR_TEXT_SECONDARY
 
 
 class MessageBubble(QFrame):
-    """A single chat message displayed as a styled bubble.
+    """A single chat message rendered as a styled bubble.
 
-    Args:
-        text:      Message content.
-        role:      "user" | "assistant" | "error"
-        timestamp: Optional datetime; defaults to now.
+    Parameters
+    ----------
+    text:      Message content.
+    role:      "user" | "assistant" | "error"
+    timestamp: Optional datetime (defaults to now).
     """
 
     def __init__(self, text: str, role: str = "assistant",
@@ -24,25 +25,39 @@ class MessageBubble(QFrame):
         self._full_text = text
 
         self.setObjectName(
-            "userBubble" if role == "user"
+            "userBubble"      if role == "user"
             else "errorBubble" if role == "error"
             else "assistantBubble"
         )
 
-        self._build_layout(text, timestamp or datetime.now())
+        self._build(text, timestamp or datetime.now())
 
-    def _build_layout(self, text: str, ts: datetime) -> None:
+    def _build(self, text: str, ts: datetime) -> None:
         outer = QHBoxLayout(self)
         outer.setContentsMargins(0, 0, 0, 0)
 
-        bubble_frame = QFrame()
-        bubble_frame.setObjectName(self.objectName())
+        frame = QFrame()
+        frame.setObjectName(self.objectName())
 
-        inner = QVBoxLayout(bubble_frame)
-        inner.setContentsMargins(12, 10, 12, 10)
+        inner = QVBoxLayout(frame)
+        inner.setContentsMargins(14, 10, 14, 10)
         inner.setSpacing(4)
 
-        # Message text
+        # Role badge (tiny, muted)
+        if self.role == "assistant":
+            badge = QLabel("JARVIS")
+            badge.setStyleSheet(
+                f"color: #7b2fff; font-size: 9px; font-weight: 700; letter-spacing: 1.5px;"
+            )
+            inner.addWidget(badge)
+        elif self.role == "user":
+            badge = QLabel("YOU")
+            badge.setStyleSheet(
+                "color: #00b4ff; font-size: 9px; font-weight: 700; letter-spacing: 1.5px;"
+            )
+            badge.setAlignment(Qt.AlignmentFlag.AlignRight)
+            inner.addWidget(badge)
+
         self._text_label = QLabel(text)
         self._text_label.setWordWrap(True)
         self._text_label.setTextInteractionFlags(
@@ -51,32 +66,27 @@ class MessageBubble(QFrame):
         self._text_label.setObjectName("messageText")
         inner.addWidget(self._text_label)
 
-        # Timestamp
-        time_str = ts.strftime("%H:%M")
-        time_label = QLabel(time_str)
-        time_label.setStyleSheet(f"color: {COLOR_TEXT_SECONDARY}; font-size: 10px;")
-        time_label.setObjectName("timestampLabel")
+        time_label = QLabel(ts.strftime("%H:%M"))
+        time_label.setStyleSheet(
+            f"color: {COLOR_TEXT_SECONDARY}; font-size: 9px;"
+        )
 
         if self.role == "user":
             time_label.setAlignment(Qt.AlignmentFlag.AlignRight)
+            inner.addWidget(time_label)
             outer.addStretch()
-            inner.addWidget(time_label)
-            outer.addWidget(bubble_frame)
+            outer.addWidget(frame)
         else:
-            time_label.setAlignment(Qt.AlignmentFlag.AlignLeft)
             inner.addWidget(time_label)
-            outer.addWidget(bubble_frame)
+            outer.addWidget(frame)
             outer.addStretch()
 
-        # Constrain bubble width to ~75% of parent
-        bubble_frame.setMaximumWidth(360)
+        frame.setMaximumWidth(380)
 
     def append_text(self, token: str) -> None:
-        """Append a streaming token to the message text."""
         self._full_text += token
         self._text_label.setText(self._full_text)
 
     def set_text(self, text: str) -> None:
-        """Replace the full message text."""
         self._full_text = text
         self._text_label.setText(text)
