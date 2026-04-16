@@ -5,7 +5,8 @@ PyQt6>=6.7.0
 faster-whisper>=1.0.3
 sounddevice>=0.4.7
 scipy>=1.13.0            # WAV encoding / audio helpers
-webrtcvad-wheels>=2.0.14 # Pre-built VAD for Windows (no MSVC compiler needed)
+# webrtcvad-wheels>=2.0.14  # Optional: always-on VAD (requires MSVC on Python 3.14 — skip if it fails)
+#   If you have Visual C++ Build Tools installed, uncomment the line above for better voice detection.
 
 # ── Text-to-speech ───────────────────────────────────────────────────────────
 edge-tts>=6.1.12
