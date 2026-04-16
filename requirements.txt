@@ -10,7 +10,7 @@ webrtcvad-wheels>=2.0.14 # Pre-built VAD for Windows (no MSVC compiler needed)
 # ── Text-to-speech ───────────────────────────────────────────────────────────
 edge-tts>=6.1.12
 pyttsx3>=2.90            # Offline Windows SAPI5 fallback
-pygame>=2.6.0            # Audio playback for edge-tts MP3 output
+playsound==1.2.2          # Audio playback for edge-tts MP3 output (pure Python, no compilation)
 
 # ── AI backends ─────────────────────────────────────────────────────────────
 openai>=1.40.0           # OpenAI API + Ollama OpenAI-compatible endpoint
